@@ -1,0 +1,28 @@
+version: 1
+points: 60
+filters:
+  trim: true
+
+tests:
+  - name: Le programme se lance
+    weight: 10
+    executable: ./app
+
+  - name: Compilation sans warning
+    executable: /bin/cat
+    args: ['obj/gcc_output.cmd']
+    exit: 0
+    points: 10
+    stdout:
+      - not:
+          - contains: 'warning:'
+
+  - name: Test message
+    executable: /bin/cat
+    args: ['obj/gcc_output.cmd']
+    exit: 0
+    points: 40
+    stdout:
+      - not:
+          - contains: 'Hello world.'
+
